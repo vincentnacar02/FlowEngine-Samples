@@ -1,0 +1,21 @@
+<Workflow id="ABC3C391-B1FE-416E-A606-B2C42BD49EB9"
+	name="demo workflow 2" flow-engine-version="1.0"
+	author="Vincent Nacar" date-published="11/02/2019">
+
+  <!-- Activity -->
+  <Activities>
+  </Activities>
+
+  <!-- Execution flow -->
+  <Execution>
+	<!-- variable declaration -->
+	<Variable name="myname" type="String" value="Vincent is Awesome!!!" />
+
+	<Repeat times="5">
+		<Do>
+			<Logger type="Info" value="@myname@" />
+		</Do>
+	</Repeat>
+  </Execution>
+  
+</Workflow>

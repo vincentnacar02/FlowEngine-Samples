@@ -1,0 +1,38 @@
+<Workflow id="ABC3C391-B1FE-416E-A606-B2C42BD49EB9"
+	name="demo workflow 2" flow-engine-version="1.0"
+	author="Vincent Nacar" date-published="11/02/2019">
+
+  <!-- Activity -->
+  <Activities>
+	
+	<Activity id="ListFiles1" name="ListFiles" assembly="Activity.ListFiles.dll">
+	  <Property name="DirectoryPath" value="C:\VINCE FILES\Source Codes\flow-project\FlowEngine\FlowEngine\bin\Debug\Workflows\Workflow2TestDir\Input" />
+	</Activity>
+	
+	<Activity id="FileInfoCheck" name="FileInfo" assembly="Activity.FileInfo.dll">
+	  <Property name="FilePath" value="" />
+	</Activity>
+
+	
+  </Activities>
+
+  <!-- Execution flow -->
+  <Execution>
+	<!-- variable declaration -->
+	<Variable name="OutputPathWithFileName" type="String" value="" />
+	
+	<Activity id="ListFiles1" return="Files" return-type="List" />
+	<ForEach activityId="ListFiles1" as="File" >
+		<Do>
+			<Assign type="Property" to="FileInfoCheck.FilePath" from="@File@" />
+			<Activity id="FileInfoCheck" return="FileName" return-type="String" />
+			
+			<Assign type="Variable" to="OutputPathWithFileName" from="[FileInfoCheck]" />
+			
+			<Logger type="Info" value="[FileInfoCheck]" />
+			<Logger type="Info" value="@OutputPathWithFileName@" />
+		</Do>
+	</ForEach>
+  </Execution>
+  
+</Workflow>
