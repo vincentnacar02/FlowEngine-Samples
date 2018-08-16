@@ -1,0 +1,53 @@
+<Workflow id="ABC3C391-B1FE-416E-A606-B2C42BD49EB9"
+	name="demo workflow 2" flow-engine-version="1.0"
+	author="Vincent Nacar" date-published="11/02/2019">
+
+  <!-- Activity -->
+  <Activities>
+	
+	<Activity id="FileExistCheck1" name="FileExist" assembly="Activity.FileExist.dll">
+	  <Property name="FilePath" value="C:\VINCE FILES\Source Codes\flow-project\FlowEngine\FlowEngine\bin\Debug\Workflows\Workflow2TestDir\Input\New Text Document.txt" />
+	</Activity>
+	
+	<Activity id="FileExistCheck2" name="FileExist" assembly="Activity.FileExist.dll">
+	  <Property name="FilePath" value="C:\VINCE FILES\Source Codes\flow-project\FlowEngine\FlowEngine\bin\Debug\Workflows\Workflow2TestDir\Input\enteng-copy.text" />
+	</Activity>
+	
+	<Activity id="CopyTest1" name="CopyFile" assembly="Activity.CopyFile.dll">
+	  <Property name="InputPath" value="C:\VINCE FILES\Source Codes\flow-project\FlowEngine\FlowEngine\bin\Debug\Workflows\Workflow2TestDir\Output\New Text Document.txt" />
+	  <Property name="DestinationPath" value="C:\VINCE FILES\Source Codes\flow-project\FlowEngine\FlowEngine\bin\Debug\Workflows\Workflow2TestDir\Input\enteng-copy.text" />
+	</Activity>
+
+	<Activity id="MoveFileTest1" name="MoveFile" assembly="Activity.MoveFile.dll">
+	  <Property name="InputPath" value="C:\VINCE FILES\Source Codes\flow-project\FlowEngine\FlowEngine\bin\Debug\Workflows\Workflow2TestDir\Input\New Text Document.txt" />
+	  <Property name="DestinationPath" value="C:\VINCE FILES\Source Codes\flow-project\FlowEngine\FlowEngine\bin\Debug\Workflows\Workflow2TestDir\Output\New Text Document.txt" />
+	</Activity>
+	
+	<Activity id="DeleteActivity1" name="DeleteFile" assembly="Activity.DeleteFile.dll">
+	  <Property name="FilePath" value="C:\VINCE FILES\Source Codes\flow-project\FlowEngine\FlowEngine\bin\Debug\Workflows\Workflow2TestDir\Input\enteng-copy.text" />
+	</Activity>
+	
+  </Activities>
+
+  <!-- Execution flow -->
+  <Execution>
+	<Activity id="FileExistCheck1" return="IsExist" return-type="Boolean" />
+	<If activityId="FileExistCheck1" condition="EqualsTo" value="True">
+		<Do>
+			<Activity id="MoveFileTest1" />
+		</Do>
+		<Else>
+			<Activity id="FileExistCheck2" return="IsExist" return-type="Boolean" />
+			<If activityId="FileExistCheck2" condition="EqualsTo" value="True">
+				<Do> 
+					<Activity id="DeleteActivity1" />
+				</Do>
+				<Else>
+				</Else>
+			</If>
+			<Activity id="CopyTest1" />
+		</Else>
+	</If>
+  </Execution>
+  
+</Workflow>

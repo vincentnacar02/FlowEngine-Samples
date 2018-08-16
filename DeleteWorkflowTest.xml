@@ -1,0 +1,19 @@
+<Workflow id="ABC3C391-B1FE-416E-A606-B2C42BD49EB9"
+	name="demo workflow 2" flow-engine-version="1.0"
+	author="Vincent Nacar" date-published="11/02/2019">
+
+  <!-- Activity -->
+  <Activities>
+	
+	<Activity id="DeleteActivity1" name="DeleteFile" assembly="Activity.DeleteFile.dll">
+	  <Property name="FilePath" value="C:\VINCE FILES\Source Codes\flow-project\FlowEngine\FlowEngine\bin\Debug\Workflows\Workflow2TestDir\ToDelete\New Text Document.txt" />
+	</Activity>
+	
+  </Activities>
+
+  <!-- Execution flow -->
+  <Execution>
+	<Activity id="DeleteActivity1" />
+  </Execution>
+  
+</Workflow>
